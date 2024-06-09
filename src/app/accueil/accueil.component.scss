@@ -1,0 +1,20 @@
+
+section#offres {
+
+    margin-top: 2rem;
+
+    .card {
+        .card-title {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        span.ville {
+            font-weight: 500;
+        }
+
+        .details .card-title {
+            margin-bottom: 0;
+        }
+    }
+}

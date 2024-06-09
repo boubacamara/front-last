@@ -32,9 +32,13 @@
               }
             ],
             "styles": [
+              "node_modules/materialize-css/dist/css/materialize.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/materialize-css/dist/js/materialize.min.js",
+              "src/assets/js/mat-main.js"
+            ]
           },
           "configurations": {
             "production": {
