@@ -5,28 +5,28 @@
         <div class="row">
             <div class="col s12 l6 offset-l3">
                 <form >
-                    <h5>Crée un compte candidat</h5>
+                    <h5>Crée un compte recruteur pour publier des offres</h5>
                     <h3 class="green-text" *ngIf="succes">votre compte a été créé avec succès</h3>
                     <div class="input-field">
                         <i class="material-icons prefix">email</i>
-                        <input type="email" [(ngModel)]="candidatDonnees.email" name="email" id="email">
+                        <input type="email" [(ngModel)]="recruteurDonnees.email" name="email" id="email">
                         <label for="email">Adresse email</label>
                         <span class="red-text" *ngIf="erreurs.email"> {{ erreurs.email.msg }}</span>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">password</i>
-                        <input type="password" [(ngModel)]="candidatDonnees.motDePasse" name="motDePasse" id="motDePasse">
+                        <input type="password" [(ngModel)]="recruteurDonnees.motDePasse" name="motDePasse" id="motDePasse">
                         <label for="motDePasse">Mot de passe</label>
                         <span class="red-text" *ngIf="erreurs.motDePasse"> {{ erreurs.motDePasse.msg }}</span>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">lock</i>
-                        <input type="password" [(ngModel)]="candidatDonnees.passeConfirmation" name="passeConfirmation" id="passeConfirmation">
+                        <input type="password" [(ngModel)]="recruteurDonnees.passeConfirmation" name="passeConfirmation" id="passeConfirmation">
                         <label for="passeConfirmation">Confirmation mot de passe</label>
-                        <span class="red-text" *ngIf="erreurs.passeConfirmation"> {{ erreurs.passeConfirmation.msg}}</span>
+                        <span class="red-text" *ngIf="erreurs.passeConfirmation"> {{ erreurs.passeConfirmation.msg }}</span>
                     </div>
                     <div class="input-field">
-                        <button class="btn teal darken-4" (click)="enregistrerCandidat()">Enregistrer</button>
+                        <button class="btn teal darken-4" (click)="enregistrerRecruteur()">Enregistrer</button>
                     </div>
                 </form>
                 <p>Si vous avez déja un compte, <a routerLink="/connexion">veuillez cliquez ici</a></p>
