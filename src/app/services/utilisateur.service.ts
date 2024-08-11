@@ -17,4 +17,32 @@ export class UtilisateurService {
   enregistrerRecruteur(recruteurDonnees:any){
     return this.http.post<string>(this.url+'recruteur/enregistrer', recruteurDonnees);
   }
+
+  recuperer() {
+    return this.http.get<any>(this.url+'utilisateur');
+  }
+
+  enregistrerProfile(profileDonnees:any) {
+    return this.http.post<any>(this.url+'utilisateur/profile/enregistrer', profileDonnees);
+  }
+
+  connexion(utilisateurDonnees:any) {
+    return this.http.post<any>(this.url+'connexion', utilisateurDonnees);
+  }
+
+  creerJeton(jeton:any) {
+    localStorage.setItem('jeton', jeton);
+  }
+
+  recuperJeton() {
+    return localStorage.getItem('jeton') ?? '';
+  }
+
+  estConnecte() {
+    return !!this.recuperJeton();
+  }
+
+  deconnexion() {
+    localStorage.removeItem('jeton');
+  }
 }

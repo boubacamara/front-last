@@ -1,0 +1,29 @@
+<nav class="nav-wrapper blue darken-1">
+    <a href="" class="sidenav-trigger" data-target="sidenav-mobile"><i class="material-icons">menu</i></a>
+
+    <ul class="hide-on-med-and-down right">
+        <li><a href="#" class="dropdown-trigger btn white blue-text text-darken-4" data-target="user-drop"><i class="material-icons">person</i></a></li>
+    </ul>
+</nav>
+
+<ul id="sidenav-mobile" class="sidenav sidenav-fixed blue darken-4">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="https://cdn.pixabay.com/photo/2017/10/31/11/30/binary-2904980_1280.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="https://i.pravatar.cc/300"></a>
+      <a href="#name"><span class="white-text name" *ngIf="utilisateur?.profile?.prenom"> {{ utilisateur?.profile?.prenom }}</span></a>
+      <a href="#email"><span class="white-text email">{{ utilisateur?.email}}</span></a>
+    </div></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">GÉRER MON COMPTE</a></li>
+    <li><a class="waves-effect white" href="#!">Utilisateurs</a></li>
+    <li><a class="waves-effect white" routerLink="/categories">Catégories</a></li>
+    <li><a class="waves-effect white" routerLink="/roles">Roles</a></li>
+    <li><a class="waves-effect white" href="#!">Offres</a></li>
+    <li><a class="waves-effect white hide-on-large-only" href="#!">Déconnexion</a></li>
+</ul>
+
+<ul id="user-drop" class="dropdown-content">
+    <li><a href="">JJ</a></li>
+</ul>

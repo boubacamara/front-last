@@ -6,19 +6,22 @@
             <div class="col s12 l6 offset-l3">
                 <form >
                     <h5>Veuillez vous identifier</h5>
+                    <h6 class="red-text" *ngIf="erreurs.msg">{{ erreurs.msg }}</h6>
                     <div class="input-field">
                         <i class="material-icons prefix">email</i>
-                        <input type="email" name="email" id="email">
+                        <input type="email" [(ngModel)]="utilisateurDonnees.email" name="email" id="email">
                         <label for="email">Adresse email</label>
+                        <span class="red-text" *ngIf="erreurs?.email"> {{ erreurs.email.msg }}</span>
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">password</i>
-                        <input type="password" name="motDePasse" id="motDePasse">
+                        <input type="password" [(ngModel)]="utilisateurDonnees.motDePasse" name="motDePasse" id="motDePasse">
                         <label for="motDePasse">Mot de passe</label>
+                        <span class="red-text" *ngIf="erreurs?.motDePasse"> {{ erreurs.motDePasse.msg }}</span>
                     </div>
                     
                     <div class="input-field">
-                        <button class="btn teal darken-4">Se connecter</button>
+                        <button class="btn teal darken-4" (click)="connexion()">Se connecter</button>
                     </div>
                 </form>
                 <p>Vous n'avez pas de compte, <a routerLink="/creation/compte">veuillez cliquez ici</a></p>
