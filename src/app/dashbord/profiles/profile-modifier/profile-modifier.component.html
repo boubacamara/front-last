@@ -1,0 +1,41 @@
+
+<app-navbar />
+
+<main id="candidat-enregistrer">
+    <section class="container">
+        <div class="row">
+            <div class="col s12 l8 offset-l2">
+                <form class="z-depth-2">
+                    <h3>Modification de mon profile</h3>
+                    <div class="input-field">
+                        <i class="material-icons prefix">perm_identity</i>
+                        <input type="text" [(ngModel)]="profileDonnees.nom" name="nom" id="nom" [value]="utilisateur.profile?.nom">
+                        <label for="nom" class="active">Nom de famille</label>
+                        <span class="red-text" *ngIf="erreurs.nom"> {{ erreurs.nom.msg }} </span>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <input type="text" [(ngModel)]="profileDonnees.prenom" name="prenom" id="prenom" [value]="utilisateur.profile?.prenom">
+                        <label for="prenom" class="active">Prénom</label>
+                        <span class="red-text" *ngIf="erreurs.prenom"> {{ erreurs.prenom.msg }} </span>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">phone</i>
+                        <input type="tel" [(ngModel)]="profileDonnees.telephone" name="telephone" id="telephone" [value]="utilisateur.profile?.telephone">
+                        <label for="telephone" class="active">Numéro de téléphone</label>
+                        <span class="red-text" *ngIf="erreurs.telephone"> {{ erreurs.telephone.msg }} </span>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">location_on</i>
+                        <input type="text" [(ngModel)]="profileDonnees.ville" name="ville" id="ville" [value]="utilisateur.profile?.ville">
+                        <label for="ville" class="active">Ville</label>
+                        <span class="red-text" *ngIf="erreurs.ville"> {{ erreurs.ville.msg }} </span>
+                    </div>
+                    <div class="input-field">
+                        <button class="btn teal darken-4" (click)="modifierProfile()">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>

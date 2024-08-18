@@ -19,11 +19,26 @@ export class UtilisateurService {
   }
 
   recuperer() {
-    return this.http.get<any>(this.url+'utilisateur');
+    return this.http.get<any>(this.url+`utilisateur`);
   }
 
+  recupererPourAdmin(id:number) {
+    return this.http.get<any>(this.url+`utilisateur?id=${id}`);
+  }
+
+  recupererUtilisateurs() {
+    return this.http.get<any>(this.url+'utilisateurs');
+  }
   enregistrerProfile(profileDonnees:any) {
     return this.http.post<any>(this.url+'utilisateur/profile/enregistrer', profileDonnees);
+  }
+
+  supprimerMonCompte(jeton:string) {
+    return this.http.delete<any>(this.url+`utilisateur/supprimer-${jeton}`);
+  }
+
+  modifierProfile(profileDonnees:any) {
+    return this.http.put<any>(this.url+'utilisateur/profile/modifier', profileDonnees);
   }
 
   connexion(utilisateurDonnees:any) {

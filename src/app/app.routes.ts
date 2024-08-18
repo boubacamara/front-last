@@ -12,6 +12,9 @@ import { CategorieAjouterComponent } from './dashbord/categories/categorie-ajout
 import { RoleComponent } from './dashbord/roles/role/role.component';
 import { RoleAjouterComponent } from './dashbord/roles/role-ajouter/role-ajouter.component';
 import { ProfileAjouterComponent } from './dashbord/profiles/profile-ajouter/profile-ajouter.component';
+import { ProfileComponent } from './dashbord/profiles/profile/profile.component';
+import { ProfileModifierComponent } from './dashbord/profiles/profile-modifier/profile-modifier.component';
+import { LesUtilisateursComponent } from './dashbord/utilisateur/les-utilisateurs/les-utilisateurs.component';
 
 
 export const routes: Routes = [
@@ -25,6 +28,9 @@ export const routes: Routes = [
 
     {path: 'dashbord', component: Accueil},
     {path: 'profile/ajouter', component: ProfileAjouterComponent},
+    {path: 'profile/modifier', component: ProfileModifierComponent},
+    {path: 'utilisateur/profile', component: ProfileComponent},
+    {path: 'utilisateurs', component: LesUtilisateursComponent},
     {path: 'categories', component: CategorieComponent},
     {path: 'categorie/ajouter', component: CategorieAjouterComponent},
     {path: 'roles', component: RoleComponent},

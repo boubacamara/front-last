@@ -28,8 +28,8 @@ export class ProfileAjouterComponent {
   enregistrerProfile() {
     
     this.utilisateurSRV.enregistrerProfile(this.profileDonnees).subscribe({
-      next: (reponse) => console.log(this.profileDonnees),
-      error: (erreurs) => console.log(erreurs)
+      next: (reponse) => this.router.navigate(['/utilisateur/profile']),
+      error: (erreurs) => this.erreurs = erreurs.error
     })
   }
 }

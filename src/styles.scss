@@ -10,3 +10,11 @@
 body {
     background: #f7f9f8;
 }
+
+.tabs .indicator {
+    background-color: teal;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background: transparent;
+}
