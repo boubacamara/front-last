@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CandidatEnregistrerComponent } from './candidat/candidat-enregistrer/candidat-enregistrer.component';
 import { OffreDetailComponent } from './offre/offre-detail/offre-detail.component';
-import { OffreEnregistrerComponent } from './offre/offre-enregistrer/offre-enregistrer.component';
 import { RecruteurEnregistrerComponent } from './recruteur/recruteur-enregistrer/recruteur-enregistrer.component';
 import { ChoixCreationCompteComponent } from './choix-creation-compte/choix-creation-compte.component';
 import { ConnexionComponent } from './connexion/connexion.component';
@@ -15,6 +14,9 @@ import { ProfileAjouterComponent } from './dashbord/profiles/profile-ajouter/pro
 import { ProfileComponent } from './dashbord/profiles/profile/profile.component';
 import { ProfileModifierComponent } from './dashbord/profiles/profile-modifier/profile-modifier.component';
 import { LesUtilisateursComponent } from './dashbord/utilisateur/les-utilisateurs/les-utilisateurs.component';
+import { ModifierEmailComponent } from './dashbord/utilisateur/modifier-email/modifier-email.component';
+import { OffreAjouterComponent } from './dashbord/offres/offre-ajouter/offre-ajouter.component';
+import { OffreListeComponent } from './dashbord/offres/offre-liste/offre-liste.component';
 
 
 export const routes: Routes = [
@@ -23,16 +25,18 @@ export const routes: Routes = [
     {path: 'recruteur/enregistrer', component: RecruteurEnregistrerComponent},
     {path: 'candidat/enregistrer', component: CandidatEnregistrerComponent},
     {path: 'connexion', component: ConnexionComponent},
-    {path: 'offre/enregistrer', component: OffreEnregistrerComponent},
     {path: 'offre/:id', component: OffreDetailComponent},
 
     {path: 'dashbord', component: Accueil},
     {path: 'profile/ajouter', component: ProfileAjouterComponent},
-    {path: 'profile/modifier', component: ProfileModifierComponent},
     {path: 'utilisateur/profile', component: ProfileComponent},
+    {path: 'utilisateur/email/modifier', component: ModifierEmailComponent},
+    {path: 'profile/modifier', component: ProfileModifierComponent},
     {path: 'utilisateurs', component: LesUtilisateursComponent},
     {path: 'categories', component: CategorieComponent},
     {path: 'categorie/ajouter', component: CategorieAjouterComponent},
     {path: 'roles', component: RoleComponent},
-    {path: 'role/ajouter', component: RoleAjouterComponent}
+    {path: 'role/ajouter', component: RoleAjouterComponent},
+    {path: 'utilisateur/offre/enregistrer', component: OffreAjouterComponent},
+    {path: 'utilisateur/offres', component: OffreListeComponent},
 ];

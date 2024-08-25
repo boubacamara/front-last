@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from "../../navbar/navbar.component";
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-offre-detail',
@@ -12,6 +13,13 @@ import { NavbarComponent } from "../../navbar/navbar.component";
   templateUrl: './offre-detail.component.html',
   styleUrl: './offre-detail.component.scss'
 })
-export class OffreDetailComponent {
+
+export class OffreDetailComponent implements OnInit{
+
+  private viewportScroller = inject(ViewportScroller);
+
+  ngOnInit(): void {
+    this.viewportScroller.scrollToPosition([0, 0])
+  }
 
 }

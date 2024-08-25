@@ -5,9 +5,9 @@
     <div class="container">
 
         <div class="row">
-          <div class="col s12 l8 offset-l2">
+          <div class="col s12 l5 offset-l1">
 
-            <a routerLink="/categorie/ajouter" class="btn teal darken-4"> <i class="material-icons left">perm_identity</i> Ajouter un utilisateur</a>
+            <a routerLink="/creation/compte" class="btn teal darken-4"> <i class="material-icons left">perm_identity</i> Ajouter un utilisateur</a>
 
             <table class="striped">
                 <thead>
@@ -15,20 +15,66 @@
                       <th>#</th>
                       <th>Nom</th>
                       <th>PRÉNOM</th>
-                      <th>PRÉNOM</th>
                       <th>RÔLE</th>
                   </tr>
                 </thead>
         
                 <tbody>
-                  <tr *ngFor="let utilisateur of utilisateurs">
-                    <td>{{ utilisateur.id }}</td>
-                    <td> {{ utilisateur?.profile?.nom }}</td>
-                    <td> {{ utilisateur?.profile?.prenom }}</td>
-                    <td> {{ utilisateur.role.intitule }}</td>
-                    <td>
-                        <a [href]="'#infos'" class="btn-floating waves-effect waves-light btn modal-trigger" (click)="recupererId(utilisateur.id)"><i class="material-icons grey darken-2">edit</i></a>&nbsp;
-                        <a routerLink="utilisateur/suppression" class="btn-floating"><i class="material-icons red">delete</i></a>
+                  <tr *ngFor="let utilisateur of utilisateurs; index as ind">
+                    <td *ngIf="utilisateur?.profile">{{ ind +1 }}</td>
+                    <td *ngIf="utilisateur?.profile"> {{ utilisateur?.profile?.nom }}</td>
+                    <td *ngIf="utilisateur?.profile"> {{ utilisateur?.profile?.prenom }}</td>
+                    <td *ngIf="utilisateur?.profile"> {{ utilisateur.role.intitule }}</td>
+                    <td *ngIf="utilisateur?.profile">
+                        <a [href]="'#infos'" class="btn-floating waves-effect waves-light btn modal-trigger" (click)="recupererId(utilisateur.id)"><i class="material-icons green darken-2">visibility</i></a>&nbsp;
+                        <a class="btn-floating" (click)="supprimerCompte(utilisateur?.monJeton, utilisateur?.id)"><i class="material-icons red">delete</i></a>
+                    </td>
+                  </tr>
+        
+                </tbody>
+            </table>
+     
+            <div id="infos" class="modal">
+              <div class="modal-content">
+
+                <ul class="collection with-header">
+                  <li class="collection-header"><h4>Profil {{ utilisateur?.profile?.nom ? ' de ' + utilisateur?.profile?.nom + ' '+ utilisateur?.profile?.prenom: 'incomplet' }}</h4></li>
+                  <li class="collection-item">Nom de famille: {{ utilisateur?.profile?.nom}}</li>
+                  <li class="collection-item">Prénom: {{ utilisateur?.profile?.prenom}}</li>
+                  <li class="collection-item">Date de naissance: {{ utilisateur?.profile?.dateDeNaissance | date: 'dd-MM-Y'}}</li>
+                  <li class="collection-item">Numéro de téléphone: {{ utilisateur?.email}}</li>
+                  <li class="collection-item">Numéro de téléphone: {{ utilisateur?.profile?.telephone}}</li>
+                  <li class="collection-item">Ville: {{ utilisateur?.profile?.ville}}</li>
+                  <li class="collection-item" *ngIf="utilisateur?.profile?.nom"><a routerLink="/profile/modifier" class="btn teal darken-4">Modifier mon profile</a></li>
+                </ul>
+
+              </div>
+              <div class="modal-footer">
+                  <a routerLink="/utilisateurs" class="modal-close waves-effect waves-green btn-flat orange"><i class="material-icons white-text">close</i></a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col s12 l5 offset-l1">
+
+            <h4 class="grey-text text-darken-3">Les profils incomplète</h4>
+            <table class="striped">
+                <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Adresse email</th>
+                      <th>ACTIONS</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr *ngFor="let utilisateur of utilisateurs; index as ind">
+                    <td *ngIf="!utilisateur?.profile">{{ ind + 1 }}</td>
+                    <td *ngIf="!utilisateur?.profile">{{ utilisateur.email }}</td>
+                    <td *ngIf="!utilisateur?.profile">
+                        <a [href]="'#infos'" class="btn-floating waves-effect waves-light btn modal-trigger" (click)="recupererId(utilisateur.id)"><i class="material-icons green darken-2">visibility</i></a>&nbsp;
+                        <a class="btn-floating" (click)="supprimerCompte(utilisateur?.monJeton, utilisateur?.id)"><i class="material-icons red">delete</i></a>
                     </td>
                   </tr>
         

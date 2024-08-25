@@ -5,31 +5,60 @@
     <div class="container">
 
         <div class="row">
-          <div class="col s12 l8 offset-l2">
-            <a routerLink="/role/ajouter" class="btn teal darken-4">Ajouter un rôle</a>
 
+          <div class="col s12 l8 offset-l2">
+
+            <a routerLink="/role/ajouter" class="btn teal darken-4">Ajouter un rôle</a>
+            <h5 class="green white-text" [ngClass]="{flash: role?.msg}">{{role?.msg}}</h5>
             <table class="striped">
                 <thead>
                   <tr>
                       <th>#</th>
-                      <th>L'INTITULÉ DU POSTE</th>
+                      <th>L'INTITULÉ DU RÔLE</th>
                       <th>ACTION</th>
                   </tr>
                 </thead>
         
                 <tbody>
-                  <tr *ngFor="let rol of roles">
-                    <td>{{ rol.id }}</td>
+                  <tr *ngFor="let rol of roles; index as ind">
+                    <td>{{ ind+1 }}</td>
                     <td> {{ rol.intitule }}</td>
                     <td>
-                        <a href="" class="btn-floating"><i class="material-icons grey darken-2">edit</i></a>&nbsp;
-                        <a href="" class="btn-floating"><i class="material-icons red">delete</i></a>
+                        <a class="btn-floating waves-effect waves-light btn modal-trigger" (click)="recuperRole(rol.id)" [href]="'#role'"><i class="material-icons grey darken-2">edit</i></a>&nbsp;
+                        <a class="btn-floating" (click)="supprimerRole(rol.id)"><i class="material-icons red">delete</i></a>
                     </td>
                   </tr>
         
                 </tbody>
             </table>
+
+            <div id="role" class="modal">
+              <div class="modal-content">
+                
+                <div class="card">
+                  <div class="card-action blue darken-2 grey-text text-lighten-3">
+                      <h4 class="center">Modification de rôle</h4>
+                  </div>
+                  <div class="card-content">
+                      <div class="input-field">
+                          <i class="material-icons prefix">supervisor_account</i>
+                          <input type="text" [(ngModel)]="roleDonnees.intitule" [value]="role?.intitule" nom="intitule" id="intitule">
+                          <label for="intitule" class="active">nom du role</label>
+                          <span class="red-text" *ngIf="erreurs.intitule"> {{ erreurs.intitule.msg }}</span>
+                      </div>
+                      <div class="input-field center">
+                          <button class="btn blue darken-2 modal-close" (click)="modifierRole(role?.id)" type="submit">Modifier</button>
+                      </div>
+                  </div>
+              </div>
+
+              </div>
+              <div class="modal-footer">
+                  <a routerLink="/roles" class="modal-close waves-effect waves-green btn-flat orange"><i class="material-icons white-text">close</i></a>
+              </div>
+            </div>
           </div>
+
         </div>
 
     </div>

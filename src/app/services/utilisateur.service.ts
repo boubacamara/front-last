@@ -37,8 +37,16 @@ export class UtilisateurService {
     return this.http.delete<any>(this.url+`utilisateur/supprimer-${jeton}`);
   }
 
+  suppressionCompteParAdmin(jeton:string, id:number) {
+    return this.http.delete<any>(this.url+`utilisateur/supprimer-${jeton}?id=${id}`);
+  }
+
   modifierProfile(profileDonnees:any) {
     return this.http.put<any>(this.url+'utilisateur/profile/modifier', profileDonnees);
+  }
+
+  modifierEmail(jeton:string, profileDonnees:any) {
+    return this.http.put<any>(this.url+`email/modifie-${jeton}`, profileDonnees);
   }
 
   connexion(utilisateurDonnees:any) {

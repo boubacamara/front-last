@@ -1,0 +1,91 @@
+<app-navbar />
+
+<main>
+
+    <div class="container">
+       
+        <div class="row">
+            <div class="col s12 l6 offset-l3">
+                
+                <div class="card">
+                    <div class="card-action blue darken-2 grey-text text-lighten-3">
+                        <h4 class="center">Crée une offre</h4>
+                    </div>
+                    <div class="card-content">
+                        <form >
+                            <div class="input-field">
+                                <i class="material-icons prefix">title</i>              
+                                <input type="text" [(ngModel)]="offreDonnees.titre" id="textarea1" class="materialize-textarea" name="titre" id="titre">
+                                <label for="titre">Saisiez le titre</label>  
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">description</i>
+                                <textarea id="textarea1" [(ngModel)]="offreDonnees.description" name="description" id="description" class="materialize-textarea"></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">work</i>
+                                <textarea id="textarea1" [(ngModel)]="offreDonnees.competences" name="competences" id="competences" class="materialize-textarea"></textarea>
+                                <label for="competences">Compétences requises</label>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">work</i>
+                                <textarea id="textarea1" [(ngModel)]="offreDonnees.exigences" name="exigences" id="exigences" class="materialize-textarea"></textarea>
+                                <label for="exigences">Exigences</label>
+                            </div>
+
+                            <div class="input-field">
+                                <i class="material-icons prefix">school</i>
+                                <input type="text" [(ngModel)]="offreDonnees.educationRequise" name="educationRequise" id="educationRequise">
+                                <label for="educationRequise">Éducation requise</label>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">attach_money</i>
+                                <input type="number" [(ngModel)]="offreDonnees.salaire" name="salaire" id="salaire">
+                                <label for="salaire">Salaire</label>
+                            </div>
+                            
+                            <div class="input-field">
+                                <i class="material-icons prefix">location_on</i>
+                                <input type="text" [(ngModel)]="offreDonnees.lieu" name="lieu" id="lieu">
+                                <label for="lieu">Lieu</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">assignment_turned_in</i>
+                                <select name="typeContrat" [(ngModel)]="offreDonnees.typeContrat">
+                                  <option disabled selected>Type de contrat</option>
+                                  <option *ngFor="let contrat of typeContrat" [value]="contrat">{{contrat}}</option>
+
+                                </select>
+                                <label>Type de contrat</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">shopping_basket</i>
+                                <select name="categorieId" [(ngModel)]="offreDonnees.categorieId">
+                                  <option disabled selected>Poste disponible</option>
+                                  <option *ngFor="let poste of posteListe">{{poste.intitule}}</option>
+                                </select>
+                                <label>Poste disponible</label>
+                            </div>
+
+                            <p>Public</p>
+                            <div class="switch">
+                            <label>
+                                Non
+                                <input type="checkbox" [(ngModel)]="offreDonnees.publier" name="publier">
+                                <span class="lever"></span>
+                                Oui
+                            </label>
+                            </div>
+                            
+                            <div class="input-field">
+                                <button class="btn teal darken-4" (click)="enregistrerOffre()">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

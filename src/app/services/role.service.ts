@@ -10,6 +10,10 @@ export class RoleService {
 
   private url:string = 'http://localhost:8000/api/';
 
+  recuperer(id:number) {
+    return this.http.get<any[]>(this.url+`role/${id}/recuperer`);
+  }
+
   getRoles() {
     return this.http.get<any[]>(this.url+'role/recuperers');
   }
@@ -18,4 +22,11 @@ export class RoleService {
     return this.http.post<any>(this.url+'role/enregistrer', roleDonnees)
   }
 
+  supprimer(id: number) {
+    return this.http.delete<any>(this.url+`role/${id}/supprimer`)
+  }
+
+  modifier(id: number, roleDonnees:any) {
+    return this.http.put<any>(this.url+`role/${id}/modifier`, roleDonnees)
+  }
 }

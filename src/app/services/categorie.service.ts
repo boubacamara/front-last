@@ -9,11 +9,25 @@ export class CategorieService {
   private url:string = 'http://localhost:8000/api/';
   private http = inject(HttpClient);
 
-  getCategories() {
-    return this.http.get<any[]>(this.url+'categorie/recuperers');
+  recuperer(id:number) {
+    return this.http.get<any[]>(this.url+`categorie/${id}/recuperer`);
   }
 
   enregistrerCategorie(categorieDonnees:any) {
     return this.http.post<any>(this.url+'categorie/enregistrer', categorieDonnees);
   }
+
+  getCategories() {
+    return this.http.get<any[]>(this.url+'categorie/recuperers');
+  }
+
+  modifier(id:number, categorieDonnees:any) {
+    return this.http.put<any[]>(this.url+`categorie/${id}/modifier`, categorieDonnees);
+  }
+
+  supprimer(id:number) {
+    return this.http.delete<any[]>(this.url+`categorie/${id}/supprimer`);
+  }
+
+
 }

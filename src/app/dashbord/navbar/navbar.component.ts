@@ -20,10 +20,12 @@ export class NavbarComponent implements OnInit {
   utilisateur:any = {};
 
   ngOnInit(): void {
+
     this.utilisateurSRV.recuperer().subscribe({
       next: (reponse) => this.utilisateur = reponse,
       error: (erreurs) => console.log(erreurs.error)
     })
   }
+
 }
 
