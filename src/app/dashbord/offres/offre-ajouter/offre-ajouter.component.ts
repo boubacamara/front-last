@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../../navbar/navbar.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CategorieService } from '../../../services/categorie.service';
+import { OffreService } from '../../../services/offre.service';
 
 declare var M:any;
 
@@ -23,10 +24,13 @@ declare var M:any;
 export class OffreAjouterComponent implements OnInit, AfterViewInit{
 
   private categorie = inject(CategorieService);
+  offreSRV = inject(OffreService);
+  router = inject(Router);
 
   typeContrat:string[] = ['cdi', 'cdd', 'intérim', 'stage', 'alternance', 'freelance'];
   posteListe:any[] = [];
   offreDonnees:any = {};
+  erreurs:any = {}
 
   ngOnInit(): void {
     
@@ -45,8 +49,11 @@ export class OffreAjouterComponent implements OnInit, AfterViewInit{
   }
 
   enregistrerOffre() {
-    console.log(this.offreDonnees)
-    this.initializeMaterializeSelect()
+
+    this.offreSRV.enregistrerOffre(this.offreDonnees).subscribe({
+      next: (reponse) => this.router.navigate(["/utilisateur/offres"]),
+      error: (erreurs) => this.erreurs = erreurs.error
+    })
   }
 
   private initializeMaterializeSelect() {

@@ -17,6 +17,8 @@ import { LesUtilisateursComponent } from './dashbord/utilisateur/les-utilisateur
 import { ModifierEmailComponent } from './dashbord/utilisateur/modifier-email/modifier-email.component';
 import { OffreAjouterComponent } from './dashbord/offres/offre-ajouter/offre-ajouter.component';
 import { OffreListeComponent } from './dashbord/offres/offre-liste/offre-liste.component';
+import { EntrepriseAjouterComponent } from './dashbord/entreprises/entreprise-ajouter/entreprise-ajouter.component';
+import { EntrepriseModifierComponent } from './dashbord/entreprises/entreprise-modifier/entreprise-modifier.component';
 
 
 export const routes: Routes = [
@@ -33,6 +35,8 @@ export const routes: Routes = [
     {path: 'utilisateur/email/modifier', component: ModifierEmailComponent},
     {path: 'profile/modifier', component: ProfileModifierComponent},
     {path: 'utilisateurs', component: LesUtilisateursComponent},
+    {path: 'recruteur/entreprise/enregistrer', component: EntrepriseAjouterComponent},
+    {path: 'entreprise/:id/modifier', component: EntrepriseModifierComponent},
     {path: 'categories', component: CategorieComponent},
     {path: 'categorie/ajouter', component: CategorieAjouterComponent},
     {path: 'roles', component: RoleComponent},

@@ -1,0 +1,48 @@
+<main>
+
+    <div class="container">
+       
+        <div class="row">
+            <div class="col s12 l8 offset-l2">
+                
+                <div class="card">
+                    <div class="card-action blue darken-2 grey-text text-lighten-3">
+                        <h4 class="center">Informations entreprise</h4>
+                    </div>
+                    <div class="card-content">
+                        <form >
+                            <div class="input-field">
+                                <i class="material-icons prefix">account_balance</i>              
+                                <input type="text" [(ngModel)]="entrepriseDonnees.nom" [value]="entreprise.nom" class="materialize-textarea" name="nom" id="nom">
+                                <label for="nom" class="active">Nom d'entreprise </label>  
+                                <span class="red-text" *ngIf="erreurs.nom">{{ erreurs.nom.msg }}</span>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">location_on</i>
+                                <textarea #adresseArea [(ngModel)]="entrepriseDonnees.adresse" [value]="entreprise.adresse" name="adresse" id="adresse" class="materialize-textarea"></textarea>
+                                <label for="adresse" class="active">Adresse postale </label>
+                                <span class="red-text" *ngIf="erreurs.adresse">{{ erreurs.adresse.msg }}</span>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">phone</i>
+                                <input type="tel" [(ngModel)]="entrepriseDonnees.telephone" [value]="entreprise.telephone" name="telephone" id="telephone" class="materialize-textarea" />
+                                <label for="telephone" class="active">Numéro de téléphone </label>
+                                <span class="red-text" *ngIf="erreurs.telephone">{{ erreurs.telephone.msg }}</span>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">account_balance_wallet</i>
+                                <input type="text" [(ngModel)]="entrepriseDonnees.ninea" [value]="entreprise.ninea" name="ninea" id="ninea" class="materialize-textarea" />
+                                <label for="ninea" class="active">Numéro d'entreprise (ninea) </label>
+                                <span class="red-text" *ngIf="erreurs.ninea">{{ erreurs.ninea.msg }}</span>
+                            </div>
+                            
+                            <div class="input-field">
+                                <button class="btn teal darken-4" (click)="modifierEntreprise(entreprise.id)">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

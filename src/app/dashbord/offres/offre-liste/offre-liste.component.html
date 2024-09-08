@@ -1,1 +1,141 @@
-<p>offre-liste works!</p>
+<app-navbar />
+
+<main>
+
+    <div class="container">
+
+        <div class="row">
+          <div class="col s12 l10 offset-l1">
+
+            <a routerLink="/utilisateur/offre/enregistrer" class="btn teal darken-4">Publier une offre</a>
+
+            <h5 class="green darken-2 white-text" [ngClass]="{flash: offre?.msg}">{{offre?.msg}}</h5>
+
+
+
+            <table class="striped responsive-table">
+                <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>TITRE</th>
+                      <th>LIEU</th>
+                      <th>TYPE DE CONTRAT</th>
+                      <th>Nom de recruteur</th>
+                      <th>DATE DE CRÉATION</th>
+                      <th>ACTION</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr *ngFor="let offre of offres; index as ind">
+                    <td>{{ ind +1}}</td>
+                    <td>{{ offre.titre }}</td>
+                    <td>{{ offre.lieu }}</td>
+                    <td>{{ offre.typeContrat }}</td>
+                    <td>{{ offre.recruteur?.profile?.prenom }}</td>
+                    <td>{{ offre.createdAt | date: 'dd MM Y H:m' }}</td>
+                    <td>
+                        <a [href]="'#offre'" (click)="recuperId(offre.id)" class="btn-floating waves-effect waves-light btn modal-trigger"><i class="material-icons grey darken-2">edit</i></a>&nbsp;
+                        <a class="btn-floating" (click)="supprimerOffre(offre.id)"><i class="material-icons red">delete</i></a>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+
+            <div id="offre" class="modal" #modal>
+              <div class="modal-content">
+                
+                <div class="card">
+                  <div class="card-action blue darken-2 grey-text text-lighten-3">
+                      <h4 class="center">Modifie mon offre</h4>
+                  </div>
+                  <div class="card-content">
+                      <form >
+                          <div class="input-field">
+                              <i class="material-icons prefix">title</i>              
+                              <input type="text" [(ngModel)]="offreDonnees.titre" [value]="offre.titre" id="textarea1" class="materialize-textarea" name="titre" id="titre">
+                              <label class="active" for="titre">Saisiez le titre </label>  
+                              <span class="red-text" *ngIf="erreurs.titre">{{ erreurs.titre.msg }}</span>
+                          </div>
+                          <div class="input-field">
+                              <i class="material-icons prefix">description</i>
+                              <textarea id="textarea1" [(ngModel)]="offreDonnees.description" [value]="offre.description" name="description" id="description" class="materialize-textarea"></textarea>
+                              <label class="active" for="description">Description </label>
+                              <span class="red-text" *ngIf="erreurs.description">{{ erreurs.description.msg }}</span>
+                          </div>
+                          <div class="input-field">
+                              <i class="material-icons prefix">work</i>
+                              <textarea id="textarea1" [(ngModel)]="offreDonnees.competences" [value]="offre.competences" name="competences" id="competences" class="materialize-textarea"></textarea>
+                              <label class="active" for="competences">Compétences requises </label>
+                              <span class="red-text" *ngIf="erreurs.competences">{{ erreurs.competences.msg }}</span>
+                          </div>
+                          <div class="input-field">
+                              <i class="material-icons prefix">work</i>
+                              <textarea id="textarea1" [(ngModel)]="offreDonnees.exigences" [value]="offre.exigences" name="exigences" id="exigences" class="materialize-textarea"></textarea>
+                              <label class="active" for="exigences">Exigences</label>
+                              <span class="red-text" *ngIf="erreurs.exigences">{{ erreurs.exigences.msg }}</span>
+                          </div>
+
+                          <div class="input-field">
+                              <i class="material-icons prefix">school</i>
+                              <input type="text" [(ngModel)]="offreDonnees.educationRequise" [value]="offre.educationRequise" name="educationRequise" id="educationRequise">
+                              <label class="active" for="educationRequise">Éducation requise</label>
+                              <span class="red-text" *ngIf="erreurs.educationRequise">{{ erreurs.educationRequise.msg }}</span>
+                          </div>
+                          <div class="input-field">
+                              <i class="material-icons prefix">attach_money</i>
+                              <input type="number" [(ngModel)]="offreDonnees.salaire" [value]="offre.salaire" name="salaire" id="salaire">
+                              <label class="active" for="salaire">Salaire</label>
+                              <span class="red-text" *ngIf="erreurs.salaire">{{ erreurs.salaire.msg }}</span>
+                          </div>
+                          
+                          <div class="input-field">
+                              <i class="material-icons prefix">location_on</i>
+                              <input type="text" [(ngModel)]="offreDonnees.lieu" [value]="offre.lieu" name="lieu" id="lieu">
+                              <label class="active" for="lieu">Lieu</label>
+                              <span class="red-text" *ngIf="erreurs.lieu">{{ erreurs.lieu.msg }}</span>
+                          </div>
+
+                          <div class="input-field col s12">
+                            <i class="material-icons prefix">assignment_turned_in</i>
+                            <select #selectForm name="typeContrat" [(ngModel)]="offreDonnees.typeContrat">
+                                
+                                <option disabled [selected]="offre.typeContrat">{{ offre.typeContrat }}</option>
+                                <option *ngFor="let contrat of typeContrat" [value]="contrat">{{ contrat }}</option>
+                                                            
+                            </select>
+                            <label>Modifier le contrat </label>
+                            <span class="red-text" *ngIf="erreurs.contrat">{{ erreurs.contrat.msg }}</span>
+                          </div>
+                          
+                          <div class="input-field">
+                              <p>Public</p>
+                              <div class="switch">
+                              <label>
+                                  Non
+                                  <input type="checkbox" [(ngModel)]="offreDonnees.publier" [checked]="offre.publier == true" name="publier">
+                                  <span class="lever"></span>
+                                  Oui
+                              </label>
+                              </div>
+                              <span class="red-text" *ngIf="erreurs.public">{{ erreurs.public.msg }}</span>
+                          </div>
+                          
+                          <div class="input-field">
+                              <button class="btn teal darken-4 modal-close" (click)="modifierOffre(offre.id)">Modifier</button>
+                          </div>
+                      </form>
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                  <a routerLink="/utilisateur/offres" class="modal-close waves-effect waves-green btn-flat orange darken-3 white-text">Annuler</a>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+    </div>
+</main>
