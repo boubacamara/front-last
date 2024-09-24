@@ -1,7 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { UtilisateurService } from '../../services/utilisateur.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+declare const M:any;
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +17,8 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  @ViewChild('offreModal', {static: true}) modalRef ?: ElementRef<HTMLDivElement>
+
   private utilisateurSRV = inject(UtilisateurService);
 
   utilisateur:any = {};
@@ -27,5 +31,12 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  permissionAdmin() {
+    return this.utilisateur.role.intitule === 'admin'
+  }
+
+  permissionAdminOuRecruteur() {
+    return this.utilisateur.role.intitule === 'admin' || this.utilisateur.role.intitule === 'recruteur';
+  }
 }
 

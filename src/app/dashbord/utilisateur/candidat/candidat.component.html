@@ -1,0 +1,68 @@
+
+
+<div class="row">
+    <div class="col s12 l10 offset-l1">
+      <ul class="tabs" #tabsCandidat>
+        <li class="tab col s3"><a href="#offres" class="blue-grey-text text-darken-4 active">Récentes offres</a></li> 
+        <li class="tab col s3"><a href="#candidature" class="blue-grey-text text-darken-4 active">Mes candidatures</a></li> 
+      </ul>
+    </div>
+
+    <div id="offres" class="col s12 l10 offset-l1">
+      <div class="col s4 offset-s8 hide-on-med-and-down">
+        <div class="input-field">
+          <i class="material-icons prefix">search</i>
+          <input type="text" [(ngModel)]="rechercher" placeholder="Rechercher">
+        </div>
+      </div>
+
+        <div class="card col s12 m5 offset-m1 l4 offset-l1" *ngFor="let offre of listeOffres | filter">
+          <div class="card-image">
+            <img src="https://cdn.pixabay.com/photo/2024/08/24/18/49/spurred-turtle-8994997_1280.jpg">
+          </div>
+          <div class="card-content">
+  
+            <span class="card-title">{{offre.titre}}</span>
+            <ul>
+              <li>Ville: {{offre.lieu}}</li>
+              <li>Type de Contrat: {{offre.typeContrat}}</li>
+              <li>Publier par: {{offre.recruteur?.entreprise?.nom}}</li>
+              <li>Publier le: {{offre.createdAt | date: 'dd MM Y'}}</li>
+            </ul>
+            <a [routerLink]="['/offre', offre.id]" class="left">En savoir plus</a>
+            
+          </div>
+        </div>
+    </div>
+   
+    <div id="candidature" class="col s12 l10 offset-l1 mt-2">
+      <table class="striped responsive-table">
+        <thead>
+          <th>#</th>
+          <th>POSTE</th>
+          <th>ENTREPRISE</th>
+          <th>VILLE</th>
+          <th>STATUT</th>
+          <th>ACTIONS</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidature of utilisateur.candidature">
+            <td>{{candidature?.UtilisateurOffres?.offreId}}</td>
+            <td>{{candidature?.titre}}</td>
+            <td>{{utilisateur?.entreprise?.nom}}</td>
+            <td>{{candidature?.lieu}}</td>
+            <td>{{afficherStatutCandidature(candidature?.UtilisateurOffres?.statut)}}</td>
+            <td class="center">
+              <a 
+                *ngIf="candidature?.UtilisateurOffres?.statut === 'accepter' || candidature?.UtilisateurOffres?.statut === 'refuser'" (click)="supprimerCandidature(candidature?.UtilisateurOffres?.offreId)">
+                <i class="material-icons red-text small">delete</i>
+              </a>
+              <a *ngIf="candidature?.UtilisateurOffres?.statut === 'attente'" (click)="supprimerCandidature(candidature?.UtilisateurOffres?.offreId)"><i class="material-icons orange-text small">cancel</i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+     
+        
+</div>

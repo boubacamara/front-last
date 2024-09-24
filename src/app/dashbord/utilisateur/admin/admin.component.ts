@@ -1,23 +1,21 @@
-import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { Component, inject } from '@angular/core';
 import { UtilisateurService } from '../../../services/utilisateur.service';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-declare var M:any;
+declare const M:any;
 
 @Component({
-  selector: 'app-les-utilisateurs',
+  selector: 'app-admin',
   standalone: true,
   imports: [
     RouterModule,
-    NavbarComponent,
     CommonModule
   ],
-  templateUrl: './les-utilisateurs.component.html',
-  styleUrl: './les-utilisateurs.component.scss'
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.scss'
 })
-export class LesUtilisateursComponent implements OnInit, AfterViewInit{
+export class AdminComponent {
 
   private utilisateurSRV = inject(UtilisateurService);
   private router = inject(Router)

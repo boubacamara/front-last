@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { UtilisateurService } from '../../../services/utilisateur.service';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@ declare const M:any;
   styleUrl: './profile-ajouter.component.scss'
 })
 
-export class ProfileAjouterComponent implements AfterViewInit{
+export class ProfileAjouterComponent implements AfterViewChecked{
 
   private utilisateurSRV = inject(UtilisateurService);
   private router = inject(Router);
@@ -27,37 +27,57 @@ export class ProfileAjouterComponent implements AfterViewInit{
   profileDonnees:any = {};
   erreurs:any = {};
 
-  ngAfterViewInit(): void {
+  @ViewChild('datepicker', {static: true}) tabsRef ?: ElementRef<HTMLInputElement>;
+
+  ngAfterViewChecked(): void {
     //this.initializeMaterializeDatepicker();
   }
 
   enregistrerProfile() {
-
+    console.log(this.profileDonnees)
     this.utilisateurSRV.enregistrerProfile(this.profileDonnees).subscribe({
       next: (reponse) => this.router.navigate(['/utilisateur/profile']),
       error: (erreurs) => this.erreurs = erreurs.error
     })
+
   }
 
   private initializeMaterializeDatepicker() {
     setTimeout(() => {
 
-      let dateElems = document.querySelectorAll('.datepicker');
-      let dateInst = M.Datepicker.init(dateElems, {
-        format: 'yyyy-mm-dd', 
-        defaultDate: new Date(2024, 8, 2),
+      let dateInst = M.Datepicker.init(this.tabsRef?.nativeElement, {
+        i18n: this.dateI18N(),
+        yearRange: 100,
+        maxYear: 2008,
+        format: 'dd-mm-yyyy', 
+        defaultDate: new Date(2008, 9, 4),
         setDefaultDate: true,
         onSelect: (date: Date) => {
           this.profileDonnees.dateDeNaissance = this.formatDate(date)
-        }
+        },
+        autoClose: true
       });
     }, 0)
   }
 
-  formatDate(date: Date): string {
+  private formatDate(date: Date): string {
     const day = ('0' + date.getDate()).slice(-2); 
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return `${month}-${day}-${year}`;
   }
+
+  private dateI18N() {
+    return {
+      done: 'Valider',
+      cancel: 'Annuler',
+      months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+      monthsShort: ["Jan", "Fév", "Mar", "Avr", "Mai", "Jun", "Jul", "Aoû", "Sep", "Oct", "Nov", "Déc"],
+      weekdays: ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+      weekdaysShort: ["Dim","Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+      weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
+    }
+  }
+
+
 }

@@ -27,7 +27,7 @@ export class UtilisateurService {
   }
 
   recupererUtilisateurs() {
-    return this.http.get<any>(this.url+'utilisateurs');
+    return this.http.get<any[]>(this.url+'utilisateurs');
   }
   enregistrerProfile(profileDonnees:any) {
     return this.http.post<any>(this.url+'utilisateur/profile/enregistrer', profileDonnees);

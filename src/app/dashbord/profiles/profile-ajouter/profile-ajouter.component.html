@@ -21,7 +21,7 @@
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">date_range</i>
-                        <input type="text" class="datepicker" [(ngModel)]="profileDonnees.dateDeNaissance" name="dateDeNaissance" id="dateDeNaissance">
+                        <input type="date" #datepicker class="datepicker" [(ngModel)]="profileDonnees.dateDeNaissance" name="dateDeNaissance" id="dateDeNaissance">
                         <label for="dateDeNaissance">Date de naissance</label>
                         <span class="red-text" *ngIf="erreurs.dateDeNaissance"> {{ erreurs.dateDeNaissance.msg }} </span>
                     </div>

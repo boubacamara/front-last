@@ -1,0 +1,54 @@
+
+
+<div class="row">
+    <div class="col s12 l10 offset-l1">
+      <ul class="tabs" #recruteurTabs>
+        <li class="tab col s3"><a href="#offres" class="blue-grey-text text-darken-4 active">Mes offres</a></li> 
+      </ul>
+    </div>
+
+    <div id="offres" class="col s12 l10 offset-l1">
+      <div class="col s4 offset-s8 hide-on-med-and-down">
+        <div class="input-field">
+          <i class="material-icons prefix">search</i>
+          <input type="text" [(ngModel)] ="rechercher" placeholder="Rechercher">
+        </div>
+      </div>
+      
+      <table class="striped responsive-table">
+        <thead>
+          <th>#</th>
+          <th>POSTE</th>
+          <th>LIEU</th>
+          <th>STATUT</th>
+          <th>TYPE DE CONTRAT</th>
+          <th>ACTIONS</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let offre of offres | filter: rechercher; index as ind">
+            <td>{{ ind + 1 }}</td>
+            <td>{{ offre.titre }}</td>
+            <td>{{ offre.lieu }}</td>
+            <td>{{ offre.publier ? 'Publier' : 'Non publier' }}</td>
+            <td>{{ offre.typeContrat | uppercase }}</td>
+            <td>
+              <a [href]="'#offre'" class="waves-effect waves-light modal-trigger"><i class="material-icons green-text">visibility</i></a>
+              <a href=""><i class="material-icons red-text">delete</i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="offre" class="modal" #offreModal>
+        <div class="modal-content">
+          <h4>titr</h4>
+          <p>contenu</p>
+        </div>
+        <div class="modal-footer">
+          <a class="modal-close waves-effect waves-green btn-flat">Fermer</a>
+        </div>
+      </div>
+
+    </div>
+      
+</div>

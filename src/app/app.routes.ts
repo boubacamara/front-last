@@ -13,7 +13,6 @@ import { RoleAjouterComponent } from './dashbord/roles/role-ajouter/role-ajouter
 import { ProfileAjouterComponent } from './dashbord/profiles/profile-ajouter/profile-ajouter.component';
 import { ProfileComponent } from './dashbord/profiles/profile/profile.component';
 import { ProfileModifierComponent } from './dashbord/profiles/profile-modifier/profile-modifier.component';
-import { LesUtilisateursComponent } from './dashbord/utilisateur/les-utilisateurs/les-utilisateurs.component';
 import { ModifierEmailComponent } from './dashbord/utilisateur/modifier-email/modifier-email.component';
 import { OffreAjouterComponent } from './dashbord/offres/offre-ajouter/offre-ajouter.component';
 import { OffreListeComponent } from './dashbord/offres/offre-liste/offre-liste.component';
@@ -34,7 +33,6 @@ export const routes: Routes = [
     {path: 'utilisateur/profile', component: ProfileComponent},
     {path: 'utilisateur/email/modifier', component: ModifierEmailComponent},
     {path: 'profile/modifier', component: ProfileModifierComponent},
-    {path: 'utilisateurs', component: LesUtilisateursComponent},
     {path: 'recruteur/entreprise/enregistrer', component: EntrepriseAjouterComponent},
     {path: 'entreprise/:id/modifier', component: EntrepriseModifierComponent},
     {path: 'categories', component: CategorieComponent},

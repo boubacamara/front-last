@@ -12,7 +12,7 @@ body {
 }
 
 .tabs .indicator {
-    background-color: teal;
+    background-color: rgb(2, 57, 57);
 }
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
@@ -22,4 +22,12 @@ body {
 .flash {
     padding: .5rem;
     border-radius: 8px;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mx-1 {
+    margin: 0 1rem !important;
 }

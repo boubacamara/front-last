@@ -2,6 +2,7 @@
     <a href="" class="sidenav-trigger" data-target="sidenav-mobile"><i class="material-icons">menu</i></a>
 
     <ul class="hide-on-med-and-down right">
+        <li><a routerLink="/dashbord" class="white blue-grey-text text-darken-3">DASHBORD</a></li>
         <li><a href="#" class="dropdown-trigger btn white blue-text text-darken-4" data-target="user-drop"><i class="material-icons">person</i></a></li>
     </ul>
 </nav>
@@ -17,11 +18,11 @@
     </div></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">GÉRER MON COMPTE</a></li>
+    <li><a class="waves-effect white" routerLink="/dashbord">DASHBORD</a></li>
     <li><a class="waves-effect white" routerLink="/utilisateur/profile">Mon profile</a></li>
-    <li><a class="waves-effect white" routerLink="/utilisateurs">Utilisateurs</a></li>
-    <li><a class="waves-effect white" routerLink="/categories">Catégories</a></li>
-    <li><a class="waves-effect white" routerLink="/roles">Roles</a></li>
-    <li><a class="waves-effect white" routerLink="/utilisateur/offres">Offres</a></li>
+    <li *ngIf="permissionAdmin()"><a class="waves-effect white" routerLink="/categories">Catégories</a></li>
+    <li *ngIf="permissionAdmin()"><a class="waves-effect white" routerLink="/roles">Roles</a></li>
+    <li *ngIf="permissionAdminOuRecruteur()"><a class="waves-effect white" routerLink="/utilisateur/offres">Offres</a></li>
     <li><a class="waves-effect white hide-on-large-only" href="#!">Déconnexion</a></li>
 </ul>
 

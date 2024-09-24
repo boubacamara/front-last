@@ -17,7 +17,7 @@
                     <div id="personne" class="col s12">
         
                         @if (!utilisateur?.profile?.nom) {
-                            <a routerLink="/profile/ajouter" class="btn teal darken-4">Compléter mon profil</a>
+                            <a routerLink="/profile/ajouter" class="btn teal darken-4 mt-2">Compléter mon profil</a>
                         }@else {
                             <ul class="collection with-header">
                                 <li class="collection-header"><h4>{{ utilisateur?.profile?.nom + ' '+ utilisateur?.profile?.prenom}}</h4></li>

@@ -1,1 +1,10 @@
 <app-navbar />
+
+<main>
+
+    <div class="container">
+        <app-admin *ngIf="utilisateur.role?.intitule === 'admin'"/>
+        <app-recruteur *ngIf="utilisateur.role?.intitule === 'recruteur'" [offreSRV]="offreSRV"/>
+        <app-candidat [offreSRV]="offreSRV" [utilisateurSRV]="utilisateurSRV" *ngIf="utilisateur.role?.intitule === 'candidat'"/>
+    </div>
+</main>

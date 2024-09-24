@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,14 @@ export class OffreService {
     return this.http.post<any>(this.uri+'offre/enregistrer', offreDonnees)
   }
 
-  recupererParId(id:number) {
+  recupererParId(id:number):Observable<any[]> {
     return this.http.get<any>(this.uri+`offre/${id}/recuperer`);
+  }
+
+  recuperers(): Observable<any[]> {
+    return this.http.get<any>(this.uri+'offre/recuperers').pipe(
+      tap(reponse => reponse)
+    )
   }
 
   recuperersParRecruteur() {
@@ -28,5 +35,13 @@ export class OffreService {
 
   supprimer(id:number) {
     return this.http.delete<any>(this.uri+`offre/${id}/supprimer`);
+  }
+
+  postuler(id:number) {
+    return this.http.get(this.uri+`offre/${id}/candidature`);
+  }
+
+  supprimerCandidature(id:number) {
+    return this.http.delete(this.uri+`offre/${id}/candidature-suppression`);
   }
 }

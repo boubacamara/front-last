@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { UtilisateurService } from '../../../services/utilisateur.service';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,7 @@ declare var M:any;
   styleUrl: './profile.component.scss'
 })
 
-export class ProfileComponent implements OnInit, AfterContentChecked{
+export class ProfileComponent implements OnInit, AfterViewChecked{
 
   private utilisateurSRV = inject(UtilisateurService);
   private entrepriseSRV = inject(EntrepriseService);
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit, AfterContentChecked{
 
   @ViewChild('tabs', {static: true}) tabsRef ?: ElementRef<HTMLUListElement>;
 
-  ngAfterContentChecked(): void {
+  ngAfterViewChecked(): void {
     this.initializeMarializeTabs()
   }
  
