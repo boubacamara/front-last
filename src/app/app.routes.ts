@@ -18,6 +18,7 @@ import { OffreAjouterComponent } from './dashbord/offres/offre-ajouter/offre-ajo
 import { OffreListeComponent } from './dashbord/offres/offre-liste/offre-liste.component';
 import { EntrepriseAjouterComponent } from './dashbord/entreprises/entreprise-ajouter/entreprise-ajouter.component';
 import { EntrepriseModifierComponent } from './dashbord/entreprises/entreprise-modifier/entreprise-modifier.component';
+import { authGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -28,12 +29,12 @@ export const routes: Routes = [
     {path: 'connexion', component: ConnexionComponent},
     {path: 'offre/:id', component: OffreDetailComponent},
 
-    {path: 'dashbord', component: Accueil},
+    {path: 'dashbord', canActivate: [authGuard], component: Accueil},
     {path: 'profile/ajouter', component: ProfileAjouterComponent},
-    {path: 'utilisateur/profile', component: ProfileComponent},
-    {path: 'utilisateur/email/modifier', component: ModifierEmailComponent},
-    {path: 'profile/modifier', component: ProfileModifierComponent},
-    {path: 'recruteur/entreprise/enregistrer', component: EntrepriseAjouterComponent},
+    {path: 'utilisateur/profile', canActivate: [authGuard], component: ProfileComponent},
+    {path: 'utilisateur/email/modifier', canActivate: [authGuard], component: ModifierEmailComponent},
+    {path: 'profile/modifier', canActivate: [authGuard], component: ProfileModifierComponent},
+    {path: 'recruteur/entreprise/enregistrer', canActivate: [authGuard], component: EntrepriseAjouterComponent},
     {path: 'entreprise/:id/modifier', component: EntrepriseModifierComponent},
     {path: 'categories', component: CategorieComponent},
     {path: 'categorie/ajouter', component: CategorieAjouterComponent},

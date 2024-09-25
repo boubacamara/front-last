@@ -3,7 +3,7 @@
 
     <ul class="hide-on-med-and-down right">
         <li><a routerLink="/dashbord" class="white blue-grey-text text-darken-3">DASHBORD</a></li>
-        <li><a href="#" class="dropdown-trigger btn white blue-text text-darken-4" data-target="user-drop"><i class="material-icons">person</i></a></li>
+        <li><a href="#" class="btn white blue-text text-darken-4" (click)="deconnexion()"><i class="material-icons">exit_to_app</i></a></li>
     </ul>
 </nav>
 
@@ -24,8 +24,4 @@
     <li *ngIf="permissionAdmin()"><a class="waves-effect white" routerLink="/roles">Roles</a></li>
     <li *ngIf="permissionAdminOuRecruteur()"><a class="waves-effect white" routerLink="/utilisateur/offres">Offres</a></li>
     <li><a class="waves-effect white hide-on-large-only" href="#!">Déconnexion</a></li>
-</ul>
-
-<ul id="user-drop" class="dropdown-content">
-    <li><a href="">JJ</a></li>
 </ul>

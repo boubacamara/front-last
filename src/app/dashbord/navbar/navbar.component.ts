@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { UtilisateurService } from '../../services/utilisateur.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 declare const M:any;
@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   private utilisateurSRV = inject(UtilisateurService);
 
   utilisateur:any = {};
+  location = inject(Location)
 
   ngOnInit(): void {
 
@@ -32,11 +33,16 @@ export class NavbarComponent implements OnInit {
   }
 
   permissionAdmin() {
-    return this.utilisateur.role.intitule === 'admin'
+    return this.utilisateur?.role?.intitule === 'admin'
   }
 
   permissionAdminOuRecruteur() {
-    return this.utilisateur.role.intitule === 'admin' || this.utilisateur.role.intitule === 'recruteur';
+    return this.utilisateur?.role?.intitule === 'admin' || this.utilisateur?.role?.intitule === 'recruteur';
+  }
+
+  deconnexion() {
+    this.utilisateurSRV.supprimerLeToken();
+    this.location.replaceState(this.location.path())
   }
 }
 

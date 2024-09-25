@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { UtilisateurService } from '../../../services/utilisateur.service';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { OffreService } from '../../../services/offre.service';
 
 declare const M:any;
 
@@ -18,16 +19,16 @@ declare const M:any;
 export class AdminComponent {
 
   private utilisateurSRV = inject(UtilisateurService);
-  private router = inject(Router)
+  private offreSRV = inject(OffreService);
 
   utilisateurs:any[] = [];
   utilisateur:any = {};
+  offres:any[] = [];
+
 
   ngOnInit(): void {
-    this.utilisateurSRV.recupererUtilisateurs().subscribe({
-      next: (reponse) => this.utilisateurs = reponse,
-      error: (erreurs) => console.log(erreurs)
-    })
+    this.recuperUtilisateurs();
+    this.recuperOffres()
   }
 
   ngAfterViewInit(): void {
@@ -44,8 +45,26 @@ export class AdminComponent {
 
   supprimerCompte(jeton:string, id:number) {
     this.utilisateurSRV.suppressionCompteParAdmin(jeton, id).subscribe({
+      next: (reponse:any) => {
+        M.toast({html: reponse.msg, classes: 'rounded green darken-4'}, 4000);
+        window.location.reload()
+      },
+      error: (erreurs) => console.log(erreurs)
+    })
+  }
+
+  private recuperUtilisateurs() {
+    this.utilisateurSRV.recupererUtilisateurs().subscribe({
+      next: (reponse) => this.utilisateurs = reponse,
+      error: (erreurs) => console.log(erreurs)
+    })
+  }
+
+  private recuperOffres() {
+    this.offreSRV.recuperers().subscribe({
       next: (reponse) => {
-        window.location.reload();
+        this.offres = reponse
+        console.log(reponse)
       },
       error: (erreurs) => console.log(erreurs)
     })

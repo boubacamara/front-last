@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class UtilisateurService {
   private url:string = 'http://localhost:8000/api/';
 
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   enregistrerCandidat(candidatDonnees:any){
     return this.http.post<string>(this.url+'candidat/enregistrer', candidatDonnees);
@@ -65,7 +67,11 @@ export class UtilisateurService {
     return !!this.recuperJeton();
   }
 
+  supprimerLeToken() {
+    localStorage.removeItem('jeton')
+  }
+
   deconnexion() {
-    localStorage.removeItem('jeton');
+    return this.http.get<any>(this.url+'utilisateur/deconnexion');
   }
 }

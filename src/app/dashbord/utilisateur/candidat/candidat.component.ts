@@ -74,12 +74,13 @@ export class CandidatComponent implements OnInit, AfterViewInit{
   
   supprimerCandidature(id:number) {
     this.offreSRV.supprimerCandidature(id).subscribe({
-      next: _ => {
-        const pageCourante = this.router.url;
-        this.router.navigateByUrl(pageCourante)
+      next: (rep:any) => {
+        M.toast({html: rep.msg, classes: 'rounded green'})
+        this.router.navigate([this.router.url], {queryParamsHandling: 'preserve'})
       },
       error: (erreurs) => console.log(erreurs)
     })
+
   }
 
   initialisationTabs() {
