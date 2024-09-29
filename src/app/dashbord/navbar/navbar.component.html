@@ -10,9 +10,15 @@
 <ul id="sidenav-mobile" class="sidenav sidenav-fixed blue darken-4">
     <li><div class="user-view">
       <div class="background">
-        <img src="https://cdn.pixabay.com/photo/2017/10/31/11/30/binary-2904980_1280.jpg">
+        <img src="https://cdn.pixabay.com/photo/2017/10/31/11/30/binary-2904980_1280.jpg" width="200" height="200" alt="Image de profil">
       </div>
-      <a href="#user"><img class="circle" src="https://i.pravatar.cc/300"></a>
+      <a href="#user">
+        @if (avatar.lien) {
+          <img [src]="avatar.lien" [alt]="avatar.type" class="responsive-img circle">
+        }@else {
+          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" width="200" height="200" class="responsive-img circle" alt="Image de profil">
+        }
+      </a>
       <a href="#name"><span class="white-text name" *ngIf="utilisateur?.profile?.prenom"> {{ utilisateur?.profile?.prenom }}</span></a>
       <a href="#email"><span class="white-text email">{{ utilisateur?.email}}</span></a>
     </div></li>

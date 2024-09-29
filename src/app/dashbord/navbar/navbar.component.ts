@@ -22,12 +22,16 @@ export class NavbarComponent implements OnInit {
   private utilisateurSRV = inject(UtilisateurService);
 
   utilisateur:any = {};
+  avatar:any = {}
   location = inject(Location)
 
   ngOnInit(): void {
 
     this.utilisateurSRV.recuperer().subscribe({
-      next: (reponse) => this.utilisateur = reponse,
+      next: (reponse) => {
+        this.utilisateur = reponse;
+        let avatar = reponse.media.find((avatar:any) => this.avatar = avatar)
+      },
       error: (erreurs) => console.log(erreurs.error)
     })
   }
