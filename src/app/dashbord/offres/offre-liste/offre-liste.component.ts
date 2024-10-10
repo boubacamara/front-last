@@ -34,11 +34,7 @@ export class OffreListeComponent implements OnInit, AfterViewInit{
   contratVerif:boolean = true;
 
   ngOnInit(): void {
-    
-    this.offreSRV.recuperersParRecruteur().subscribe({
-      next: (reponse) => this.offres = reponse,
-      error: (erreurs) => console.log(erreurs)
-    })
+    this.recuperParRecruteur()    
   }
 
   @ViewChild('selectForm', {static: true}) selectRef?: ElementRef<HTMLSelectElement>
@@ -66,7 +62,8 @@ export class OffreListeComponent implements OnInit, AfterViewInit{
     this.offreSRV.modifierOffre(id, this.offreDonnees).subscribe({
       next: (reponse) => {
         this.offre = reponse;
-        setInterval(() => window.location.reload(), 1200)
+        M.toast({html: reponse.msg, classes: 'green darken-4'});
+        this.recuperParRecruteur();
       },
       error: (erreurs) => this.erreurs = erreurs.error
     });
@@ -78,7 +75,8 @@ export class OffreListeComponent implements OnInit, AfterViewInit{
     this.offreSRV.supprimer(id).subscribe({
       next: (reponse) => {
         this.offre = reponse;
-        setInterval(() => window.location.reload(), 1200);
+        M.toast({html: reponse.msg, classes: 'green darken-4'});
+        this.recuperParRecruteur();
       },
       error: (erreurs) => console.log(erreurs)
     })
@@ -86,6 +84,13 @@ export class OffreListeComponent implements OnInit, AfterViewInit{
 
   exclureContratActuel(contratActuel:string) {
     return this.typeContrat.filter(contrat => contrat != contratActuel);
+  }
+
+  private recuperParRecruteur() {
+    this.offreSRV.recuperersParRecruteur().subscribe({
+      next: (reponse) => this.offres = reponse,
+      error: (erreurs) => console.log(erreurs)
+    })
   }
 
   private initializeMaterializeSelect() {

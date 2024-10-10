@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from "../../navbar/navbar.component";
 import { UtilisateurService } from '../../services/utilisateur.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+declare const M:any;
 
 @Component({
   selector: 'app-recruteur-enregistrer',
@@ -19,6 +21,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class RecruteurEnregistrerComponent {
 
+  private readonly router = inject(Router);
+
   recruteurDonnees:any = {};
 
   erreurs:any = {};
@@ -28,12 +32,9 @@ export class RecruteurEnregistrerComponent {
 
   enregistrerRecruteur() {
     this.utilisateurSRV.enregistrerRecruteur(this.recruteurDonnees).subscribe({
-      next: (reponse) => {
-
-        this.erreurs = {}
-        this.succes = true;
-        console.log(reponse);
-
+      next: (reponse:any) => {
+        M.toast({html: reponse.msg, displayLength: 1500, classses: 'rounded green darken-4'});
+        this.router.navigateByUrl('/connexion')
       },
       error: (erreurs) => {
 

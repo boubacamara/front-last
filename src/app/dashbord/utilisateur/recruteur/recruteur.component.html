@@ -22,7 +22,7 @@
           <th>LIEU</th>
           <th>STATUT</th>
           <th>TYPE DE CONTRAT</th>
-          <th>ACTIONS</th>
+          <th>CANDIDATURES</th>
         </thead>
         <tbody>
           <tr *ngFor="let offre of offres | filter: rechercher; index as ind">
@@ -32,8 +32,9 @@
             <td>{{ offre.publier ? 'Publier' : 'Non publier' }}</td>
             <td>{{ offre.typeContrat | uppercase }}</td>
             <td>
-              <a [href]="'#offre'" class="waves-effect waves-light modal-trigger"><i class="material-icons green-text">visibility</i></a>
-              <a href=""><i class="material-icons red-text">delete</i></a>
+              <a [href]="'#offre'" class="waves-effect waves-light modal-trigger" (click)="recupererLesCandidat(offre.id)">
+               Il y a {{offre?.candidat.length}} candidat(s) pour cette offre
+              </a>
             </td>
           </tr>
         </tbody>
@@ -41,8 +42,31 @@
 
       <div id="offre" class="modal" #offreModal>
         <div class="modal-content">
-          <h4>titr</h4>
-          <p>contenu</p>
+          <h4>Liste des candidats</h4>
+          <table class="striped responsive-table">
+            <thead>
+              <th>#</th>
+              <th>NOM</th>
+              <th>PRÉNOM</th>
+              <th>TÉLÉPHONE</th>
+              <th>CV DU CANDIDAT</th>
+            </thead>
+            <tbody>
+              @for (candidat of candidats; track candidat.id; let ind = $index) {
+                <tr>
+                  <td>{{ ind + 1 }}</td>
+                  <td>{{ candidat?.profile?.nom}}</td>
+                  <td>{{ candidat?.profile?.prenom}}</td>
+                  <td>{{ candidat?.profile?.telephone}}</td>
+                  <td class="center"><a [routerLink]="['/candidat', candidat?.id, 'curriculum-vitae']" class="valign-wrapper"><i class="material-icons small"> assignment</i>Consulter</a></td>
+                </tr>
+              }@empty {
+                <tr>
+                  <td colspan="5" class="center">Aucun candidat pour cette offre</td>
+                </tr>
+              }
+            </tbody>
+          </table>
         </div>
         <div class="modal-footer">
           <a class="modal-close waves-effect waves-green btn-flat">Fermer</a>

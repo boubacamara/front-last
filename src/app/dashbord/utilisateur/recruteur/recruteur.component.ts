@@ -3,6 +3,7 @@ import { OffreService } from '../../../services/offre.service';
 import { CommonModule } from '@angular/common';
 import { FilterPipe } from '../../../pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 declare const M:any;
 
@@ -10,6 +11,7 @@ declare const M:any;
   selector: 'app-recruteur',
   standalone: true,
   imports: [
+    RouterLink,
     CommonModule,
     FormsModule,
     FilterPipe
@@ -25,6 +27,7 @@ export class RecruteurComponent implements OnInit, AfterViewInit{
 
   offres:any[] = [];
   rechercher:string = '';
+  candidats:any[] = [];
 
   ngOnInit(): void {
     this.recuperOffres();
@@ -45,5 +48,13 @@ export class RecruteurComponent implements OnInit, AfterViewInit{
     })
   }
 
+  recupererLesCandidat(id:number) {
+    this.offreSRV.recupererParId(id).subscribe({
+      next: (res:any) => {
+        this.candidats = res.candidat;
+        console.log(res)
+      }
+    })
+  }
 
 }

@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     this.utilisateurSRV.recuperer().subscribe({
       next: (reponse) => {
         this.utilisateur = reponse;
-        let avatar = reponse.media.find((avatar:any) => this.avatar = avatar)
+        this.avatar = reponse.media.find((avatar:any) =>  avatar.type === 'avatar')
       },
       error: (erreurs) => console.log(erreurs.error)
     })
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
   }
 
   permissionAdminOuRecruteur() {
-    return this.utilisateur?.role?.intitule === 'admin' || this.utilisateur?.role?.intitule === 'recruteur';
+    return (this.utilisateur?.role?.intitule === 'admin' || this.utilisateur?.role?.intitule === 'recruteur') && this.utilisateur.profile;
   }
 
   deconnexion() {

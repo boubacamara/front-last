@@ -19,6 +19,8 @@ import { OffreListeComponent } from './dashbord/offres/offre-liste/offre-liste.c
 import { EntrepriseAjouterComponent } from './dashbord/entreprises/entreprise-ajouter/entreprise-ajouter.component';
 import { EntrepriseModifierComponent } from './dashbord/entreprises/entreprise-modifier/entreprise-modifier.component';
 import { authGuard } from './guards/auth.guard';
+import { AfficherCurriculumComponent } from './dashbord/utilisateur/afficher-curriculum/afficher-curriculum.component';
+import { recruteurPermissionGuard } from './guards/recruteur-permission.guard';
 
 
 export const routes: Routes = [
@@ -42,4 +44,5 @@ export const routes: Routes = [
     {path: 'role/ajouter', component: RoleAjouterComponent},
     {path: 'utilisateur/offre/enregistrer', component: OffreAjouterComponent},
     {path: 'utilisateur/offres', component: OffreListeComponent},
+    {path: 'candidat/:id/curriculum-vitae', canActivate:[recruteurPermissionGuard], component: AfficherCurriculumComponent}
 ];

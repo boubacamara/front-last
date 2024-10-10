@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { Router, RouterModule } from '@angular/router';
 
+declare const M:any;
+
 @Component({
   selector: 'app-profile-modifier',
   standalone: true,
@@ -36,7 +38,10 @@ export class ProfileModifierComponent implements OnInit{
 
   modifierProfile() {
     this.utilisateurSRV.modifierProfile(this.profileDonnees).subscribe({
-      next: () => this.router.navigate(['/utilisateur/profile']),
+      next: (reponse:any) => {
+        M.toast({html: reponse.msg, displayLength: 500, classes: 'green darken-4 rounded'});
+        this.router.navigate(['/utilisateur/profile']);
+      },
       error: (erreurs) => this.erreurs = erreurs.error
     })
   }

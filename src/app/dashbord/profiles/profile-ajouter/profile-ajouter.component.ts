@@ -34,12 +34,13 @@ export class ProfileAjouterComponent implements AfterViewChecked{
   }
 
   enregistrerProfile() {
-    console.log(this.profileDonnees)
     this.utilisateurSRV.enregistrerProfile(this.profileDonnees).subscribe({
-      next: (reponse) => this.router.navigate(['/utilisateur/profile']),
+      next: (reponse) => {
+        M.toast({html: reponse.msg, classes: 'green darken-4'});
+        this.router.navigate(['/utilisateur/profile'])
+      },
       error: (erreurs) => this.erreurs = erreurs.error
     })
-
   }
 
   private initializeMaterializeDatepicker() {

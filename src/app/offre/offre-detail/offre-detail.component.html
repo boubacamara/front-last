@@ -19,7 +19,7 @@
                                 <span>Il y a 3 jours</span>
                             </p>
                         </div>
-                        <div class="col s12 l3">
+                        <div class="col s12 l3" *ngIf="utilisateur?.role?.intitule === 'candidat'">
                             <a class="btn teal darken-4 right" (click)="postuler()"><i class="material-icons left">check</i> Postuler</a>
                         </div>
                     </div>

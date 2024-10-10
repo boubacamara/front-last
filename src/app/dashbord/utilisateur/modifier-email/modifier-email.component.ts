@@ -5,6 +5,8 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 import { UtilisateurService } from '../../../services/utilisateur.service';
 import { FormsModule } from '@angular/forms';
 
+declare const M:any;
+
 @Component({
   selector: 'app-modifier-email',
   standalone: true,
@@ -35,7 +37,10 @@ export class ModifierEmailComponent implements OnInit{
 
   modifierEmail(jeton:string) {
     this.utilisateurSRV.modifierEmail(jeton, this.utilisateurEmail).subscribe({
-      next: (reponse) => this.router.navigate(['/utilisateur/profile']),
+      next: (reponse) => {
+        M.toast({html: reponse.msg, displayLength: 500, classes: 'green darken-4 rounded'});
+        this.router.navigate(['/utilisateur/profile'])
+      },
       error: (erreurs)=> this.erreurs = erreurs.error
     })
   }

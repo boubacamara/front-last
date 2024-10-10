@@ -10,7 +10,9 @@
                     <div class="col s12">
                       <ul class="tabs" #tabs>
                         <li class="tab col s3"><a [href]="'#personne'" class=" active teal-text text-darken-4">Informations personnelles</a></li>
-                        <li class="tab col s3" *ngIf="utilisateur && utilisateur?.role?.intitule === 'recruteur'"><a [href]="'#entreprise'" class="active teal-text text-darken-4">Informations entreprise</a></li>
+                        <li 
+                            class="tab col s3" *ngIf="utilisateur && utilisateur?.role?.intitule === 'recruteur' && utilisateur?.profile" 
+                        ><a [href]="'#entreprise'" class="active teal-text text-darken-4">Informations entreprise</a></li>
                         <li class="tab col s3" *ngIf="utilisateur && utilisateur?.role?.intitule === 'candidat'"><a [href]="'#candidatcv'" class="active teal-text text-darken-4">Mon curriculum vitae</a></li>
                       </ul>
                     </div>
@@ -56,7 +58,7 @@
                           
                     </div>
 
-                    <div id="entreprise" class="col s12" *ngIf="utilisateur && utilisateur?.role?.intitule === 'recruteur'">
+                    <div id="entreprise" class="col s12" *ngIf="utilisateur && utilisateur?.role?.intitule === 'recruteur' && utilisateur?.profile">
                         @if (!utilisateur.entreprise) {
                             <a routerLink="/recruteur/entreprise/enregistrer" class="btn entreprise-btn teal darken-4">Compléter les informations de votre entreprise</a>
                         }@else {

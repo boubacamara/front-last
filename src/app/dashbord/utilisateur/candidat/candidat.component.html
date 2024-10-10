@@ -57,7 +57,7 @@
                 *ngIf="candidature?.UtilisateurOffres?.statut === 'accepter' || candidature?.UtilisateurOffres?.statut === 'refuser'" (click)="supprimerCandidature(candidature?.UtilisateurOffres?.offreId)">
                 <i class="material-icons red-text small">delete</i>
               </a>
-              <a *ngIf="candidature?.UtilisateurOffres?.statut === 'attente'" (click)="supprimerCandidature(candidature?.UtilisateurOffres?.offreId)"><i class="material-icons orange-text small">cancel</i></a>
+              <a *ngIf="candidature?.UtilisateurOffres?.statut === 'attente'" (click)="supprimerCandidature(candidature?.UtilisateurOffres?.offreId)"><i class="material-icons btn-suppression-candidat orange-text small">cancel</i></a>
             </td>
           </tr>
         </tbody>
