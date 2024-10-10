@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { OffreService } from '../../../services/offre.service';
 import { Router, RouterModule } from '@angular/router';
+import { UtilisateurService } from '../../../services/utilisateur.service';
 
 declare const M:any;
 
@@ -32,8 +33,11 @@ export class OffreListeComponent implements OnInit, AfterViewInit{
   offre:any = {};
   erreurs:any = {};
   contratVerif:boolean = true;
+  utilisateurSRV = inject(UtilisateurService);
+  utilisateur:any = {};
 
   ngOnInit(): void {
+    this.recuperUtilisateur()
     this.recuperParRecruteur()    
   }
 
@@ -84,6 +88,13 @@ export class OffreListeComponent implements OnInit, AfterViewInit{
 
   exclureContratActuel(contratActuel:string) {
     return this.typeContrat.filter(contrat => contrat != contratActuel);
+  }
+
+  private recuperUtilisateur(){
+    this.utilisateurSRV.recuperer().subscribe({
+      next: res => this.utilisateur = res,
+      error: () => console.warn('Erreur interne du serveur')
+    })
   }
 
   private recuperParRecruteur() {
