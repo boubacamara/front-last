@@ -16,4 +16,8 @@ export class MediaService {
   chargerAvatar(file:any) {
     return this.http.post<any>(this.uri+`utilisateur/charger/avatar`, file);
   }
+
+  chargerEntrepriseImage(id:number, file:any) {
+    return this.http.post<any>(this.uri+`utilisateur/charger/entreprise/${id}`, file);
+  }
 }

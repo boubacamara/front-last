@@ -26,8 +26,11 @@
                 <li>
                     <a routerLink="/utilisateur/offre/enregistrer" *ngIf="permissionRecruteurOuAdmin(utilisateur)" class="blue-grey-text text-darken-4 right">Publier une offre d'emploi</a>
                 </li>
-                <li>
-                    <a [href]="'#'" *ngIf="utilisateurSRV.estConnecte()"  (click)="deconnexion()" class="blue-grey-text text-darken-4 right">Déconnexion</a>
+                <li *ngIf="utilisateurSRV.estConnecte()">
+                    <a routerLink="/dashbord" class="blue-grey-text text-darken-4 right">Mon compte</a>
+                </li>
+                <li *ngIf="utilisateurSRV.estConnecte()">
+                    <a [href]="'#'"  (click)="deconnexion()" class="blue-grey-text text-darken-4 right">Déconnexion</a>
                 </li>
             </ul>
         </div>

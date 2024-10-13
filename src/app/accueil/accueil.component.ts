@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { OffreService } from '../services/offre.service';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { FilterPosteLieuPipe } from '../pipes/filter-poste-lieu.pipe';
+import { RelativeTimePipe } from '../pipes/relative-time.pipe';
 
 @Component({
   selector: 'app-accueil',
@@ -15,7 +16,8 @@ import { FilterPosteLieuPipe } from '../pipes/filter-poste-lieu.pipe';
     RouterModule,
     CommonModule,
     NavbarComponent,
-    FilterPosteLieuPipe
+    FilterPosteLieuPipe,
+    RelativeTimePipe
 ],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss'

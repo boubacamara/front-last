@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit, AfterViewChecked{
         let avatar = reponse?.media?.find((media:any) => media.type === 'avatar');
         this.curriculum = curriculum;
         this.avatar = avatar;
-        console.log(curriculum)
       },
       error: (erreurs) => console.log(erreurs)
     })
@@ -109,8 +108,21 @@ export class ProfileComponent implements OnInit, AfterViewChecked{
         this.router.navigateByUrl('dashbord')
       },
       error: (erreur) => M.toast({html: erreur.error.msg, classes: 'rounded red'})
+    })  
+  }
+
+  chargerEntrepriseImage(id:number, event:any) {
+    let avatar = event.target?.files[0];
+    let file = new FormData();
+    file.set('file', avatar);
+
+    this.media.chargerEntrepriseImage(id, file).subscribe({
+      next: (rep) => {
+        M.toast({html: rep.msg, classes: 'rounded green'});
+        this.router.navigateByUrl('dashbord')
+      },
+      error: (erreur) => M.toast({html: erreur.error.msg, classes: 'rounded red'})
     })
-    
   }
 
   private initializeMarializeTabs() {

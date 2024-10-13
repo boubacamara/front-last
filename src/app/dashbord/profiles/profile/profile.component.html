@@ -65,6 +65,25 @@
                         
                             <ul class="collection with-header">
                                 <li class="collection-header"><h4>Infos entreprise</h4></li>
+                                <li>
+
+                                    @if (!utilisateur?.entreprise?.media?.type) {
+                                        <form>
+                                            <div class="file-field input-field">
+                                              <div class="btn teal darken-3">
+                                                <span>FICHIER</span>
+                                                <input type="file" (change)="chargerEntrepriseImage(utilisateur?.entreprise?.id, $event)" name="file">
+                                              </div>
+                                              <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text" placeholder="Ajouter une photo de profil">
+                                              </div>                                         
+                                            </div>                                    
+                                        </form>
+                                    }@else {
+                                        <img [src]="utilisateur.entreprise.media.lien" width="1500" height="300" class="ent-img">
+                                    }
+                                    
+                                </li>
                                 <li class="collection-item">Nom d'entreprise: {{ utilisateur?.entreprise?.nom}}</li>
                                 <li class="collection-item">Adresse: {{ utilisateur?.entreprise?.adresse}}</li>
                                 <li class="collection-item">Numéro de téléphone: {{ utilisateur?.entreprise?.telephone}}</li>

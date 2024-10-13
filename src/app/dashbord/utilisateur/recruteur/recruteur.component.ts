@@ -42,7 +42,7 @@ export class RecruteurComponent implements OnInit, AfterViewInit{
     this.offreSRV.recuperersParRecruteur().subscribe({
       next: reponse => {
         this.offres = reponse;
-        console.log(reponse)
+        //console.log(reponse)
       },
       error: erreurs => console.log(erreurs)
     })
@@ -52,7 +52,7 @@ export class RecruteurComponent implements OnInit, AfterViewInit{
     this.offreSRV.recupererParId(id).subscribe({
       next: (res:any) => {
         this.candidats = res.candidat;
-        console.log(res)
+        console.log(res.candidat)
       }
     })
   }

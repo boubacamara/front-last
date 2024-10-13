@@ -13,6 +13,10 @@
     opacity: .5;
 }
 
+.ent-img {
+    object-fit: cover;
+}
+
 @media only screen and (max-width: 992px) {
 
     .container {
